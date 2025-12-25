@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 signingConfigs {
     debug {
         keyAlias 'key'
@@ -13,3 +14,7 @@ cd android
 ./gradlew signingReport
 
 // GoogleSignInService does not work 
+=======
+# Flutter-Ecommerce
+Grocery-App
+>>>>>>> f94c41122ec2cc97bccc289af41f8fc400c8fb3a
