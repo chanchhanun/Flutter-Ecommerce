@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/constants/AppColor.dart';
 import 'package:grocery_app/screen/account_page.dart';
-import 'package:grocery_app/screen/auth_page.dart';
 import 'package:grocery_app/screen/cart_page.dart';
 import 'package:grocery_app/screen/explore_page.dart';
 import 'package:grocery_app/screen/favorite_page.dart';

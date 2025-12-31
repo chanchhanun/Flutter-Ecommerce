@@ -8,8 +8,6 @@ import 'package:grocery_app/widgets/search_widget.dart';
 import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-import '../models/cart.model.dart';
-
 class ExplorePage extends StatelessWidget {
   ExplorePage({super.key});
   final categoryController = Get.put(CategoryController());
@@ -32,16 +30,38 @@ class ExplorePage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: SingleChildScrollView(
             child: Column(
+              spacing: 12,
               children: [
                 SearchWidget(),
-                SizedBox(height: 12),
                 _buildCategoriesSection(),
-                SizedBox(height: 12),
+                _buildNewestSection(),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildNewestSection() {
+    return Column(
+      children: [
+        _buildHeader(title: 'New Arrivals'),
+        Container(
+          width: double.infinity,
+          height: 260,
+          margin: EdgeInsets.symmetric(vertical: 12),
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              var item = productController.productNewest[index];
+              return CardItemWidget(item: item);
+            },
+            separatorBuilder: (context, index) => SizedBox(width: 6),
+            itemCount: productController.productNewest.length,
+          ),
+        ),
+      ],
     );
   }
 
@@ -75,7 +95,7 @@ class ExplorePage extends StatelessWidget {
     return Column(
       spacing: 16,
       children: [
-        _buildHeader(title: 'Show All Categories'),
+        _buildHeader(title: 'Show All Categories', isCategoried: true),
         GridView.builder(
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,

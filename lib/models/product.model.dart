@@ -105,7 +105,56 @@ class Product {
 
   // empty product
   factory Product.empty() {
-    return Product();
+    return Product(
+      id: '',
+      name: '',
+      description: '',
+      price: 0,
+      sold: 0,
+      rating: 0,
+      stock: 0,
+      unit: '',
+      sku: '',
+      images: [],
+      category: Category(id: '', name: ''),
+      brand: Category(id: '', name: ''),
+      exclusiveOffer: ExclusiveOffer(
+        isActive: false,
+        discountPercent: 0,
+        originalPrice: 0,
+        validUntil: '',
+        badgeText: '',
+      ),
+      createdAt: '',
+      updatedAt: '',
+      iV: 0,
+      currentPrice: 0,
+      hasActiveOffer: false,
+    );
+  }
+
+  @override
+  String toString() {
+    return Product(
+      id: id,
+      name: name,
+      description: description,
+      price: price,
+      sold: sold,
+      rating: rating,
+      stock: stock,
+      unit: unit,
+      sku: sku,
+      images: images,
+      category: category,
+      brand: brand,
+      exclusiveOffer: exclusiveOffer,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+      iV: iV,
+      currentPrice: currentPrice,
+      hasActiveOffer: hasActiveOffer,
+    ).toJson().toString();
   }
 }
 

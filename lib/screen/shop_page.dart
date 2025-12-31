@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:grocery_app/constants/AppColor.dart';
+import 'package:grocery_app/controllers/category_controller.dart';
 import 'package:grocery_app/controllers/product_controller.dart';
 import 'package:grocery_app/models/product.model.dart';
 import 'package:grocery_app/services/apis/product_api.dart';
@@ -17,6 +18,7 @@ class ShopPage extends StatelessWidget {
   ShopPage({super.key});
 
   final productController = Get.put(ProductController());
+  final categoryController = Get.put(CategoryController());
 
   @override
   Widget build(BuildContext context) {
@@ -88,32 +90,36 @@ class ShopPage extends StatelessWidget {
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
+          var category = categoryController.categoryList[index];
           return Container(
             width: 280,
             height: double.infinity,
             decoration: BoxDecoration(
-              color: yellow.withOpacity(.3),
+              color: yellow.withOpacity(.2),
               borderRadius: BorderRadius.circular(12),
             ),
             padding: EdgeInsets.all(10.0),
             child: Row(
               spacing: 20,
               children: [
-                Image.asset('assets/images/pulses.png'),
-                Text(
-                  'Pulses',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                Image.network('${category.image}', width: 130),
+                Expanded(
+                  child: Text(
+                    category.name ?? 'No Name Provided',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               ],
             ),
           );
         },
-        separatorBuilder: (context, index) => SizedBox(width: 20),
-        itemCount: 5,
+        separatorBuilder: (context, index) => SizedBox(width: 10),
+        itemCount: categoryController.categoryList.length,
       ),
     );
   }
