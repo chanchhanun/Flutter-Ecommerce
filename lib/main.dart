@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/constants/AppColor.dart';
 import 'package:grocery_app/screen/account_page.dart';
+import 'package:grocery_app/screen/auth_page.dart';
 import 'package:grocery_app/screen/cart_page.dart';
 import 'package:grocery_app/screen/explore_page.dart';
 import 'package:grocery_app/screen/favorite_page.dart';
@@ -10,9 +11,13 @@ import 'package:grocery_app/screen/shop_page.dart';
 import 'package:get/get.dart';
 import 'package:grocery_app/screen/sign_up_page.dart';
 import 'package:grocery_app/screen/welcome_page.dart';
+import 'package:grocery_app/services/notification/notification_service.dart';
 import 'package:grocery_app/services/storages/token_storage.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await NotificationService.init();
+  await NotificationService.notificationPermission();
   runApp(const MyApp());
 }
 

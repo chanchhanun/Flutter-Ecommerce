@@ -11,6 +11,8 @@ import 'package:grocery_app/widgets/loading-widget/loading_header.dart';
 import 'package:grocery_app/widgets/search_widget.dart';
 import 'package:get/get.dart';
 
+import '../services/notification/notification_service.dart';
+
 class ShopPage extends StatelessWidget {
   ShopPage({super.key});
 
@@ -19,6 +21,14 @@ class ShopPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () async {
+            await NotificationService.createNotification();
+          },
+          icon: Icon(Icons.notification_add),
+        ),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
